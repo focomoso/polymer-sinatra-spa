@@ -10,16 +10,18 @@ before do
 end
 
 # send the frontend
+# This is the only actual html file served.
+# Everything else is json.
 get "/" do
     content_type 'html'
     send_file 'public/index.html'
-    # erb :index
 end
 
 get "/items" do
     @items = Item.all
     @items.to_json
 end
+
 post "/items/new" do
     @item = Item.new
     @item.up_for_bid = false
@@ -28,6 +30,7 @@ post "/items/new" do
     @item.created_at = DateTime.now
     @item.updated_at = null
 end
+
 put "/items/:id" do
     @item = Item.find(params[:id])
     @item.up_for_bid = params[:up_for_bid]
@@ -40,6 +43,7 @@ put "/items/:id" do
         {:item => @item, :status => "failure"}.to_json
     end
 end
+
 delete "/items/:id" do
     @item = Item.find(params[:id])
     if @item.destroy
