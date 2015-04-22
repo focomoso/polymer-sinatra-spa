@@ -1,0 +1,20 @@
+{
+  "name": "polymer-spa",
+  "version": "0.0.0",
+  "homepage": "https://github.com/focomoso/polymer-sinatra-spa",
+  "authors": [
+    "focomoso <jkelly@focomoso.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5"
+  }
+}
