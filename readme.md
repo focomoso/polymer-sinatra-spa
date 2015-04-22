@@ -17,3 +17,20 @@ You'll need:
 * Polymer 0.5 [installing Polymer](https://www.polymer-project.org/0.5/docs/start/getting-the-code.html)
 
 Note: will update to Polymer 0.8 when the components become avaliable.
+
+Once everything's installed, run:
+
+```
+createdb polymer-sinatra-spa
+```
+
+To create your postgres database.
+
+To test that it's working, run:
+
+```
+psql polymer-sinatra-spa
+```
+If you get a psql prompt it should be all good.
+
+
