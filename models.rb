@@ -6,7 +6,7 @@ class Item
   property :id,           Serial
   property :up_for_bid,   Boolean
   property :description,  Text
-  property :awesomeness,  Number
+  property :awesomeness,  Integer
   property :created_at,   DateTime
   property :updated_at,   DateTime
 
