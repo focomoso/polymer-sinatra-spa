@@ -16,20 +16,22 @@ get "/" do
 end
 
 get "/items" do
-    @items = Task.all
+    @items = Item.all
     @items.to_json
 end
 post "/items/new" do
     @item = Item.new
-    @item.complete = false
+    @item.up_for_bid = false
     @item.description = params[:description]
+    @item.awesomeness = 0;
     @item.created_at = DateTime.now
     @item.updated_at = null
 end
 put "/items/:id" do
     @item = Item.find(params[:id])
-    @item.complete = params[:complete]
+    @item.up_for_bid = params[:up_for_bid]
     @item.description = params[:description]
+    @item.awesomeness += 1
     @item.updated_at = DateTime.now
     if @item.save
         {:item => @item, :status => "success"}.to_json
