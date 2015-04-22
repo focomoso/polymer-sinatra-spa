@@ -12,7 +12,8 @@ end
 # send the frontend
 get "/" do
     content_type 'html'
-    erb :index
+    send_file 'public/index.html'
+    # erb :index
 end
 
 get "/items" do
