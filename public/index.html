@@ -7,11 +7,43 @@
   <title>Single page app using Polymer</title>
 
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="bower_components/polymer/polymer.html">
-  <link rel="import" href="bower_components/core-component-page/core-component-page.html">
+
+  <link rel="import" href="elements.html">
+
+  <link rel="stylesheet" href="css/styles.css" shim-shadowdom>
 
 </head>
-<body>
-  <h1>Testing...</h1>
+<body unresolved fullbleed>
+
+  <core-scaffold id="scaffold">
+    <nav>
+      <core-toolbar><span>Single Page Polymer</span></core-toolbar>
+      <core-menu selected="0">
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#one">Single</a>
+        </paper-item>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#two">page</a>
+        </paper-item>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#three">app</a>
+        </paper-item>
+      </core-menu>
+    </nav>
+
+    <core-toolbar tool flex>
+      <!-- flex spaces this element and justifies the icons to the right-side -->
+      <div flex>Application</div>
+      <core-icon-button icon="refresh"></core-icon-button>
+      <core-icon-button icon="add"></core-icon-button>
+    </core-toolbar>
+
+    <div layout horizontal center-center fit>
+      <!-- fill with pages -->
+    </div>
+  </core-scaffold>
 </body>
 </html>

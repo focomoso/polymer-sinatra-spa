@@ -15,6 +15,9 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5"
+    "polymer": "Polymer/polymer#^0.5",
+    "core-elements": "Polymer/core-elements#~0.5.5",
+    "paper-item": "Polymer/paper-item#~0.5.5",
+    "flatiron-director": "Polymer/flatiron-director#~0.5.0"
   }
 }
