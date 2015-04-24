@@ -16,6 +16,15 @@
 <body unresolved fullbleed>
 <template is="auto-binding">
 
+  <!-- remembers our rout on refresh -->
+  <flatiron-director route="{{route}}" autoHash></flatiron-director>
+
+  <!-- key event binding -->
+  <core-a11y-keys target="{{parentElement}}"
+          keys="up down left right space space+shift"
+          on-keys-pressed="{{keyHandler}}"></core-a11y-keys>
+
+
   <core-scaffold id="scaffold">
     <nav>
       <core-toolbar><span>Polymer CRUD spa</span></core-toolbar>
@@ -41,7 +50,7 @@
     <div layout horizontal center-center fit>
 
       <core-animated-pages valueattr="hash" selected="{{route}}"
-                           transitions="slide-from-right">
+                           transitions="slide-from-right" id='pages'>
         <template repeat="{{page in pages}}">
           <section hash="{{page.hash}}" layout vertical center-center>
             <div>{{page.name}}</div>
@@ -55,12 +64,44 @@
 </template>
 
 <script>
+(function () {
   var template = document.querySelector('template[is="auto-binding"]');
+
+  // crud data
   template.pages = [
-    {name: 'Index', hash: 'one'},
-    {name: 'New', hash: 'two'},
-    {name: 'app', hash: 'three'}
+    {name: 'Index', hash: 'index'},
+    {name: 'Show', hash: 'show'},
+    {name: 'New', hash: 'new'},
+    {name: 'Edit', hash: 'edit'},
+    {name: 'Delete', hash: 'delete'}
   ];
+
+  // set up the flatiron router
+  template.addEventListener('template-bound', function(e) {
+    // Use URL hash for initial route. Otherwise, use the first page.
+    this.route = this.route || DEFAULT_ROUTE;
+  });
+
+  // handle key events
+  template.keyHandler = function(e, detail, sender) {
+
+    var pages = document.querySelector('#pages');
+
+    switch (detail.key) {
+      case 'left':
+      case 'up':
+        pages.selectPrevious();
+        break;
+      case 'right':
+      case 'down':
+        pages.selectNext();
+        break;
+      case 'space':
+        detail.shift ? pages.selectPrevious() : pages.selectNext();
+        break;
+    }
+  };
+})();
 </script>
 </body>
 </html>
